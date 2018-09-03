@@ -1,0 +1,41 @@
+-- Database structure
+-- You can use the file install.php to complete this process
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+-- preventing database errors
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `rssreader`
+--
+
+CREATE DATABASE rssreader;
+
+use rssreader;
+
+--
+-- Table `feed`
+--
+
+CREATE TABLE IF NOT EXISTS feed (
+  id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  url varchar(255) NOT NULL,
+  created timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+
+--
+-- Data for table `feed`
+--
+
+INSERT INTO feed (url) VALUES
+('http://newsrss.bbc.co.uk/rss/newsonline_uk_edition/front_page/rss.xml'),
+('http://rss.nytimes.com/services/xml/rss/nyt/World.xml'),
+('http://www.engadget.com/rss.xml'),
+('http://www.engadget.com/rss.xml');

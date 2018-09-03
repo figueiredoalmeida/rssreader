@@ -1,0 +1,15 @@
+﻿
+Installing RSS Reader:
+===============================================================
+
+1. Database structure:
+
+   - Use the install.php file to create the database, table and some data.
+   - You can do it straight from the browser /rssreader/install.php, or via command line, using the command php install.php at the root folder /rssreader;
+
+
+2. Database settings:
+
+   - At /rssreader/classes/database.php, please, change the username and password according to your database settings.
+
+3. Now, it is ready to use!
