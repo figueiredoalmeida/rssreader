@@ -1,5 +1,5 @@
 <?php
-include_once "header.php";
+include_once 'header.php';
 include_once 'classes/database.php';
 include_once 'dbconnection.php';
 ?>
@@ -9,21 +9,20 @@ include_once 'dbconnection.php';
 </div>
 
 <?php
-if ($_POST){
+if ($_POST) {
     include_once 'classes/feed.php';
     $feed = new Feed($db);
 
     $feed->url = htmlentities(trim($_POST['url']));
 
-    if($feed->add()){ ?>
+    if ($feed->add()) { ?>
         <div class="alert alert-success alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             Success! Feed is created.
         </div>
 
     <?php
-    }
-    else { ?>
+    } else { ?>
         <div class="alert alert-danger alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             Error! Unable to create feed.
@@ -51,6 +50,6 @@ if ($_POST){
 </form>
 
 <?php
-include_once "footer.php";
+include_once 'footer.php';
 ?>
 

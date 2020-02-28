@@ -1,5 +1,5 @@
 <?php
-include_once "header.php";
+include_once 'header.php';
 include_once 'classes/database.php';
 include_once 'classes/feed.php';
 include_once 'dbconnection.php';
@@ -17,10 +17,10 @@ $feed = new Feed($db);
 $feed->id = $id;
 $url = $feed->getFeed();
 
-$entries = array();
+$entries = [];
 
 $xml = simplexml_load_file($feed->url);
-$entries = array_merge($entries, $xml->xpath("//item"));
+$entries = array_merge($entries, $xml->xpath('//item'));
 
 //Sort feed entries by pubDate
 usort($entries, function ($feed1, $feed2) {
@@ -30,7 +30,7 @@ usort($entries, function ($feed1, $feed2) {
 
 <ul>
     <?php
-    foreach($entries as $entry){
+    foreach ($entries as $entry) {
         ?>
         <li><a href="<?= $entry->link ?>"><?= $entry->title ?></a> (<?= parse_url($entry->link)['host'] ?>)
         <p><?= strftime('%m/%d/%Y %I:%M %p', strtotime($entry->pubDate)) ?></p>

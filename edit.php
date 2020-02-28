@@ -1,5 +1,5 @@
 <?php
-include_once "header.php";
+include_once 'header.php';
 include_once 'classes/database.php';
 include_once 'classes/feed.php';
 include_once 'dbconnection.php';
@@ -12,24 +12,20 @@ include_once 'dbconnection.php';
 <?php
 $id = isset($_GET['id']) ? $_GET['id'] : die('ID not found!');
 
-
 $feed = new Feed($db);
 $feed->id = $id;
 $feed->getFeed();
 
-
-if($_POST) {
-
+if ($_POST) {
     $feed->url = htmlentities(trim($_POST['url']));
 
-    if($feed->update()) { ?>
+    if ($feed->update()) { ?>
         <div class="alert alert-success alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             Success! Feed is edited.
         </div>
     <?php
-    }
-    else { ?>
+    } else { ?>
         <div class="alert alert-danger alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             Error! Unable to edit feed.
@@ -39,11 +35,11 @@ if($_POST) {
 }
 ?>
 
-<form action='edit.php?id=<?php echo $id;?>' method='post'>
+<form action='edit.php?id=<?php echo $id; ?>' method='post'>
     <table class='table table-hover table-responsive table-bordered'>
         <tr>
             <td>URL</td>
-            <td><input type='text' name='url' value='<?php echo $feed->url;?>' class='form-control' placeholder="Enter the feed URL" required></td>
+            <td><input type='text' name='url' value='<?php echo $feed->url; ?>' class='form-control' placeholder="Enter the feed URL" required></td>
         </tr>
 
         <tr>
@@ -57,5 +53,5 @@ if($_POST) {
 </form>
 
 <?php
-include_once "footer.php";
+include_once 'footer.php';
 ?>

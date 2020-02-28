@@ -1,5 +1,5 @@
 <?php
-include_once "header.php";
+include_once 'header.php';
 include_once 'classes/database.php';
 include_once 'classes/feed.php';
 include_once 'dbconnection.php';
@@ -15,7 +15,7 @@ $statement = $feed->getAllFeeds();
 $num = $statement->rowCount();
 
 // if any result, display it!
-if($num > 0) { ?>
+if ($num > 0) { ?>
 
     <table class='table table-hover table-responsive table-bordered'>
         <tr>
@@ -25,11 +25,11 @@ if($num > 0) { ?>
 
         <?php
         // displaying all results
-        while ($row = $statement->fetch(PDO::FETCH_ASSOC)){
+        while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
             extract($row); ?>
 
             <tr>
-                <td><?=$row['url'];?></td>
+                <td><?=$row['url']; ?></td>
                 <td>
                     <a href='view.php?id=<?=$id?>' class='btn btn-info left-margin'>View</a>
                     <a href='edit.php?id=<?=$id?>' class='btn btn-warning left-margin'>Edit</a>
@@ -43,11 +43,8 @@ if($num > 0) { ?>
     </table>
 
 <?php
+} else {
+    echo '<div>No feeds found.</div>';
 }
 
-else {
-
-    echo "<div>No feeds found.</div>";
-}
-
-include_once "footer.php";
+include_once 'footer.php';

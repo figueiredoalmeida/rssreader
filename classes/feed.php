@@ -1,23 +1,21 @@
 <?php
 
-class Feed {
-
+class feed
+{
     public $dbconnection;
     public $id;
     public $url;
-
 
     public function __construct($db)
     {
         $this->dbconnection = $db;
     }
 
-
-    function add() {
-
+    public function add()
+    {
         if ($this->validate()) {
             $sql = 'INSERT INTO feed (url)
-                    VALUES ("' . $this->url . '")';
+                    VALUES ("'.$this->url.'")';
             $statement = $this->dbconnection->prepare($sql);
 
             if ($statement->execute()) {
@@ -25,27 +23,22 @@ class Feed {
             } else {
                 return false;
             }
-        }
-        else {
+        } else {
             return false;
         }
-
     }
 
-
-    function validate() {
-
+    public function validate()
+    {
         if (simplexml_load_string(@file_get_contents($this->url))) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
 
-
-    public function totalRows() {
-
+    public function totalRows()
+    {
         $sql = 'SELECT id FROM feed';
         $statement = $this->dbconnection->prepare($sql);
         $statement->execute();
@@ -54,12 +47,11 @@ class Feed {
         return $total;
     }
 
-
-    function update() {
-
+    public function update()
+    {
         $sql = 'UPDATE feed
-                SET url = "'. $this->url .'"
-                WHERE id = ' . $this->id;
+                SET url = "'.$this->url.'"
+                WHERE id = '.$this->id;
         $statement = $this->dbconnection->prepare($sql);
 
         if ($statement->execute()) {
@@ -69,11 +61,10 @@ class Feed {
         }
     }
 
-
-    function delete() {
-
+    public function delete()
+    {
         $sql = 'DELETE FROM feed
-                WHERE id = ' . $_GET['id'];
+                WHERE id = '.$_GET['id'];
         $statement = $this->dbconnection->prepare($sql);
 
         if ($statement->execute()) {
@@ -83,9 +74,8 @@ class Feed {
         }
     }
 
-
-    function getAllFeeds() {
-
+    public function getAllFeeds()
+    {
         $sql = 'SELECT id, url
                 FROM feed
                 ORDER BY id';
@@ -95,11 +85,11 @@ class Feed {
         return $statement;
     }
 
-
-    function getFeed() {
+    public function getFeed()
+    {
         $sql = 'SELECT url
                 FROM feed
-                WHERE id = ' . $this->id;
+                WHERE id = '.$this->id;
 
         $statement = $this->dbconnection->prepare($sql);
         $statement->execute();
@@ -107,10 +97,8 @@ class Feed {
         if ($statement->rowCount() > 0) {
             $row = $statement->fetch(PDO::FETCH_ASSOC);
             $this->url = $row['url'];
-        }
-        else {
+        } else {
             die('ID not found!');
         }
-
     }
 }
